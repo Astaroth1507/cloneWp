@@ -30,8 +30,7 @@ const alerts = [
 			<p className="sidebar__alert-text"> Phone Not Connected</p>
 			<p className="sidebar__alert-text">
 				Make sure your phone has an active internet connection.{" "}
-				<a
-					className="underline"
+				<a className="underline"
 					href="https://faq.whatsapp.com/web/troubleshooting/cant-connect-to-whatsapp-web-or-desktop/"
 					target="_blank">
 					{" "}
