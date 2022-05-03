@@ -1,6 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
 import React, { useEffect, useState } from "react";
+import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Loader from "./components/Loader";
 import Home from "./pages/Home";
@@ -12,7 +11,7 @@ const userPrefersDark =
 	window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 function App() {
-  const [appLoaded, setAppLoaded] = useState(false);
+	const [appLoaded, setAppLoaded] = useState(false);
 	const [startLoadProgress, setStartLoadProgress] = useState(false);
 
 	useEffect(() => {

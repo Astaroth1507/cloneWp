@@ -13,6 +13,7 @@ const Checkbox = ({ inputProps }) => {
 			/>
 			<label htmlFor="checkbox" className="checkbox__label">
 				<Icon id="check" className="checkbox__icon" />
+
 			</label>
 		</div>
 	);
