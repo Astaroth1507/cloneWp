@@ -3,6 +3,7 @@ import Icon from "components/Icon";
 import { Link } from "react-router-dom";
 import formatTime from "utils/formatTime";
 import { useUsersContext } from "context/usersContext";
+import {useParams} from "react-router-dom";
 
 const Contact = ({ contact }) => {
 	const { setUserAsUnread } = useUsersContext();
@@ -13,13 +14,13 @@ const Contact = ({ contact }) => {
 		const lastMessage = messages.pop();
 		return lastMessage;
 	};
-
+	const {idUsu} = useParams();
 	const lastMessage = getLastMessage(contact);
 
 	return (
 		<Link
 			className="sidebar-contact"
-			to={`/chat/${contact.id}`}
+				to={`/usuario/${idUsu}/chat/${contact.id}`}
 			onClick={() => setUserAsUnread(contact.id)}
 		>
 			<div className="sidebar-contact__avatar-wrapper">
