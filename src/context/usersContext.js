@@ -7,7 +7,10 @@ const UsersContext = createContext();
 const useUsersContext = () => useContext(UsersContext);
 
 const UsersProvider = ({ children }) => {
+
 	const socket = useSocketContext();
+
+
 
 	const [users, setUsers] = useState(contacts);
 
@@ -17,9 +20,24 @@ const UsersProvider = ({ children }) => {
 			let userIndex = users.findIndex((user) => user.id === userId);
 			const userObject = usersCopy[userIndex];
 			usersCopy[userIndex] = { ...userObject, [prop]: value };
+		//	console.log(usersCopy[userIndex].id+"   envia");
 			return usersCopy;
+
 		});
 	};
+
+
+
+	const setUserAsUnread = (userId) => {
+		_updateUserProp(userId, "unread", 0);
+
+	//	console.log(userId+"   r1111egresa");
+	};
+
+
+
+
+
 
 	const setUserAsTyping = (data) => {
 		const { userId } = data;
@@ -30,7 +48,7 @@ const UsersProvider = ({ children }) => {
 		const { userId } = data;
 		_updateUserProp(userId, "typing", false);
 	};
-
+/////////////////////////////////////////////////////////
 	const fetchMessageResponse = (data) => {
 		setUsers((users) => {
 			const { userId, response } = data;
@@ -46,6 +64,7 @@ const UsersProvider = ({ children }) => {
 
 			usersCopy[userIndex].messages.TODAY.push(newMsgObject);
 
+
 			return usersCopy;
 		});
 	};
@@ -56,9 +75,8 @@ const UsersProvider = ({ children }) => {
 		socket.on("stop_typing", setUserAsNotTyping);
 	}, [socket]);
 
-	const setUserAsUnread = (userId) => {
-		_updateUserProp(userId, "unread", 0);
-	};
+
+
 
 	const addNewMessage = (userId, message) => {
 		let userIndex = users.findIndex((user) => user.id === userId);
@@ -70,11 +88,16 @@ const UsersProvider = ({ children }) => {
 			status: "delivered",
 		};
 
+		//////////
+
+		console.log(newMsgObject);
+
 		usersCopy[userIndex].messages.TODAY.push(newMsgObject);
 		setUsers(usersCopy);
 
 		socket.emit("fetch_response", { userId });
 	};
+
 
 	return (
 		<UsersContext.Provider value={{ users, setUserAsUnread, addNewMessage }}>
