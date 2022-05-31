@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import contacts from "data/contacts";
 import { useSocketContext } from "./socketContext";
-
+import {useParams} from "react-router-dom";
 const UsersContext = createContext();
 
 const useUsersContext = () => useContext(UsersContext);
@@ -9,7 +9,7 @@ const useUsersContext = () => useContext(UsersContext);
 const UsersProvider = ({ children }) => {
 
 	const socket = useSocketContext();
-
+	//const {idUsu} = useParams();
 
 
 	const [users, setUsers] = useState(contacts);
@@ -52,7 +52,7 @@ const UsersProvider = ({ children }) => {
 	const fetchMessageResponse = (data) => {
 		setUsers((users) => {
 			const { userId, response } = data;
-
+console.log(data);
 			let userIndex = users.findIndex((user) => user.id === userId);
 			const usersCopy = JSON.parse(JSON.stringify(users));
 			const newMsgObject = {
@@ -78,24 +78,27 @@ const UsersProvider = ({ children }) => {
 
 
 
-	const addNewMessage = (userId, message) => {
+	const addNewMessage = (userId, message,idUsu) => {
 		let userIndex = users.findIndex((user) => user.id === userId);
+
 		const usersCopy = [...users];
 		const newMsgObject = {
 			content: message,
 			sender: null,
+			sender2:idUsu,
+		//	resiver:userId,
 			time: new Date().toLocaleTimeString(),
 			status: "delivered",
 		};
 
 		//////////
 
-		console.log(newMsgObject);
+	//	console.log(newMsgObject);
 
 		usersCopy[userIndex].messages.TODAY.push(newMsgObject);
 		setUsers(usersCopy);
 
-		socket.emit("fetch_response", { userId });
+		socket.emit("fetch_response", { userId ,...newMsgObject});
 	};
 
 

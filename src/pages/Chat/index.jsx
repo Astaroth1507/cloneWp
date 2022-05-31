@@ -9,10 +9,11 @@ import Icon from "components/Icon";
 import Profile from "./components/Profile";
 import Convo from "./components/Convo";
 import { useUsersContext } from "context/usersContext";
+import {useParams} from "react-router-dom";
 
 const Chat = ({ match, history }) => {
 	const { users, setUserAsUnread, addNewMessage } = useUsersContext();
-
+	const {idUsu} = useParams();
 	const userId = match.params.id;
 	let user = users.filter((user) => user.id === Number(userId))[0];
 
@@ -49,7 +50,7 @@ const Chat = ({ match, history }) => {
 	};
 
 	const submitNewMessage = () => {
-		addNewMessage(user.id, newMessage);
+		addNewMessage(user.id, newMessage,idUsu);
 		setNewMessage("");
 		scrollToLastMsg();
 	};
