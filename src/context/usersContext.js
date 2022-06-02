@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import contacts from "data/contacts";
-import { useSocketContext } from "./socketContext";
-import {useParams} from "react-router-dom";
+import { useSocketContext} from "./socketContext";
+import {io} from "socket.io-client";
+
 const UsersContext = createContext();
 
 const useUsersContext = () => useContext(UsersContext);
@@ -9,7 +10,8 @@ const useUsersContext = () => useContext(UsersContext);
 const UsersProvider = ({ children }) => {
 
 	const socket = useSocketContext();
-	//const {idUsu} = useParams();
+	const [arrivalMessage, setArrivalMessage] = useState(null);
+
 
 
 	const [users, setUsers] = useState(contacts);
@@ -49,9 +51,9 @@ const UsersProvider = ({ children }) => {
 		_updateUserProp(userId, "typing", false);
 	};
 /////////////////////////////////////////////////////////
-	const fetchMessageResponse = (data) => {
+/*	const fetchMessageResponse = (data) => {
 		setUsers((users) => {
-			const { userId, response } = data;
+			const { sender, response } = data;
 console.log(data);
 			let userIndex = users.findIndex((user) => user.id === userId);
 			const usersCopy = JSON.parse(JSON.stringify(users));
@@ -68,25 +70,91 @@ console.log(data);
 			return usersCopy;
 		});
 	};
+	*/
 
 	useEffect(() => {
-		socket.on("fetch_response", fetchMessageResponse);
-		socket.on("start_typing", setUserAsTyping);
-		socket.on("stop_typing", setUserAsNotTyping);
-	}, [socket]);
+
+		socket.on("getMessage", (data) => {
+		//	console.log(data);
+		/*	setArrivalMessage({
+				sender: data.idUsu,
+				content: data.message,
+				createdAt: Date.now(),
+			});*/
+			//console.log(data)
+			fetchMessageResponse(data);
+			//console.log(arrivalMessage+"          holaaaaaaaaaaaaaa");
+
+		});
+	}, []);
+
+
+	const fetchMessageResponse = (data) => {
+
+
+		setUsers((users) => {
+			console.log(users);
+			const { idUsu, message } = data;
+
+			let userIndex =idUsu-1;
+
+
+//console.log(idUsu);
+
+	//		const isLargeNumber = (element) => element.id===Number(idUsu)[0] ;
+	//		console.log(users.findIndex(isLargeNumber));
+			//let user = Carlos.filter((user) => user.id === Number(idUsu))[0];
+		//	let userIndex = users.filter((user) => user.id === idUsu);
+		//	userIndex=userIndex+idUsu;
+			const usersCopy = JSON.parse(JSON.stringify(users));
+
+console.log(userIndex);
+
+			const newMsgObject = {
+				content: message,
+				sender: idUsu,
+				time: new Date().toLocaleTimeString(),
+				status: null,
+			};
+
+			usersCopy[userIndex].messages.TODAY.push(newMsgObject);
+			console.log(newMsgObject);
+			return usersCopy;
+		});
+	};
+
+
+
+
+
+
+
 
 
 
 
 	const addNewMessage = (userId, message,idUsu) => {
 		let userIndex = users.findIndex((user) => user.id === userId);
-
+//console.log(userId, message,idUsu)
 		const usersCopy = [...users];
 		const newMsgObject = {
-			content: message,
-			sender: null,
-			sender2:idUsu,
-		//	resiver:userId,
+
+
+			sender:idUsu,
+			text: message,
+			receiver:userId,
+
+			time: new Date().toLocaleTimeString(),
+			status: "delivered",
+		};
+
+		const newMsgObject2 = {
+
+
+			sender:null,
+			text: message,
+			receiver:userId,
+
 			time: new Date().toLocaleTimeString(),
 			status: "delivered",
 		};
@@ -95,10 +163,10 @@ console.log(data);
 
 	//	console.log(newMsgObject);
 
-		usersCopy[userIndex].messages.TODAY.push(newMsgObject);
+		usersCopy[userIndex].messages.TODAY.push(newMsgObject2);
 		setUsers(usersCopy);
 
-		socket.emit("fetch_response", { userId ,...newMsgObject});
+		socket.emit("sendMessage", {userId,message,idUsu});
 	};
 
 

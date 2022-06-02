@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import contacts from "data/contacts";
-import { useSocketContext } from "./socketContext";
+import {useSocketContext} from "./socketContext";
+import {useParams} from "react-router-dom";
 
 const UsersContext = createContext();
 
@@ -8,39 +9,45 @@ const useUsersCContext = () => useContext(UsersContext);
 
 const UsersCProvider = ({ children }) => {
 
+	const socket = useSocketContext();
 
-
-
+	//const {idUsu} = useParams();
+	const [onlineUsers, setOnlineUsers] = useState([]);
 
 
 
 
 	const [Carlos, setCarlos] = useState(contacts);
 
-	const _updateUserCarlosProp = (userId, prop, value) => {
-		setCarlos((users) => {
-			const usersCopy = [...users];
-			let userIndex = users.findIndex((user) => user.id === userId);
-			const userObject = usersCopy[userIndex];
-			usersCopy[userIndex] = { ...userObject, [prop]: value };
-			//console.log(usersCopy[userIndex].id+"   envia");
-			return usersCopy;
+
+
+
+	const agregarUsuario = (idUsu) => {
+
+		socket.emit("addUser", idUsu);
+
+
+	};
+
+	/*useEffect(() => {
+
+		socket.emit("addUser", agregarUsuario);
+		socket.on("getUsers", (users) => {
+			console.log(users)
+
+			///////////////////////////
+			setOnlineUsers(users
+			);
 		});
-	};
+	}, [socket]);*/
 
-
-
-	const setUserCarlosAsUnread = (userId) => {
-		_updateUserCarlosProp(userId, "unread", 0);
-	//	console.log(userId)
-	};
 
 
 
 
 
 	return (
-		<UsersContext.Provider value={{ Carlos,setUserCarlosAsUnread}}>
+		<UsersContext.Provider value={{ Carlos, agregarUsuario}}>
 			{children}
 		</UsersContext.Provider>
 	);

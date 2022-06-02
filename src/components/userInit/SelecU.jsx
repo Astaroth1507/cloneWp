@@ -1,16 +1,16 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useUsersCContext } from "context/usersCarlosContext";
 
 const SelectU = ({ contact }) => {
-	const { setUserCarlosAsUnread } = useUsersCContext();
+	const { agregarUsuario} = useUsersCContext();
 
 	return (
 		<Link
 			className="sidebar-contact"
 			to={`/usuario/${contact.id}`}
-			onClick={() => setUserCarlosAsUnread(contact.id)}
+			onClick={() => agregarUsuario(contact.id)}
 		>
 
 			<div className="sidebar-contact__avatar-wrapper">
