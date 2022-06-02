@@ -64,7 +64,7 @@ const Convo = ({ lastMsgRef, messages: allMessages }) => {
 									</div>
 								) : message.sender ? (
 									<p className="chat__msg chat__msg--rxd" ref={assignRef()}>
-										<span>{message.content}</span>
+									<span>{message.content}</span>
 										<span className="chat__msg-filler"> </span>
 										<span className="chat__msg-footer">
 											{formatTime(message.time)}

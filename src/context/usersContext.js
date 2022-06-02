@@ -10,7 +10,7 @@ const useUsersContext = () => useContext(UsersContext);
 const UsersProvider = ({ children }) => {
 
 	const socket = useSocketContext();
-	const [arrivalMessage, setArrivalMessage] = useState(null);
+
 
 
 
@@ -140,30 +140,21 @@ console.log(userIndex);
 		const newMsgObject = {
 
 
-			sender:idUsu,
-			text: message,
-			receiver:userId,
-
-			time: new Date().toLocaleTimeString(),
-			status: "delivered",
-		};
-
-		const newMsgObject2 = {
-
-
 			sender:null,
-			text: message,
+			content: message,
 			receiver:userId,
 
 			time: new Date().toLocaleTimeString(),
 			status: "delivered",
 		};
+
+
 
 		//////////
 
 	//	console.log(newMsgObject);
 
-		usersCopy[userIndex].messages.TODAY.push(newMsgObject2);
+		usersCopy[userIndex].messages.TODAY.push(newMsgObject);
 		setUsers(usersCopy);
 
 		socket.emit("sendMessage", {userId,message,idUsu});

@@ -10,7 +10,7 @@ const Header = () => {
     const { Carlos, agregarUsuario} = useUsersCContext();
     const {idUsu} = useParams();
     let user = Carlos.filter((user) => user.id === Number(idUsu))[0];
-//const agregar=(idUsu)=>{agregarUsuario(idUsu)};
+
 
 
     return (
