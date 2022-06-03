@@ -7,8 +7,8 @@ const alerts = [
 			<Icon id="notification" className="sidebar__alert-icon" />
 		</div>
 		<div className="sidebar__alert-texts">
-			<p className="sidebar__alert-text"> Get notified of new messages </p>
-			<p className="sidebar__alert-text"> Turn on your notifications </p>
+			<p className="sidebar__alert-text"> Recibir notificaciones de mensajes </p>
+			<p className="sidebar__alert-text"> Activar notificaciones de escritorio </p>
 		</div>
 	</div>,
 	<div className="sidebar__alert sidebar__alert--danger">
@@ -16,9 +16,9 @@ const alerts = [
 			<Icon id="notification" className="sidebar__alert-icon" />
 		</div>
 		<div className="sidebar__alert-texts">
-			<p className="sidebar__alert-text"> Phone battery low </p>
+			<p className="sidebar__alert-text"> Telefono con Bateria Baja </p>
 			<p className="sidebar__alert-text">
-				Charge your phone to keep using Whatsapp.
+				Carga tu telefono para usar Whatsapp.
 			</p>
 		</div>
 	</div>,
@@ -27,16 +27,16 @@ const alerts = [
 			<Icon id="noWifi" className="sidebar__alert-icon" />
 		</div>
 		<div className="sidebar__alert-texts">
-			<p className="sidebar__alert-text"> Phone Not Connected</p>
+			<p className="sidebar__alert-text"> Telefono no conectado</p>
 			<p className="sidebar__alert-text">
-				Make sure your phone has an active internet connection.{" "}
+				Revisa la conexion de tu dispositivo.{" "}
 				<a
 					className="underline"
 					href="https://faq.whatsapp.com/web/troubleshooting/cant-connect-to-whatsapp-web-or-desktop/"
 					target="_blank"
 				>
 					{" "}
-					Learn more.{" "}
+					saber más.{" "}
 				</a>
 			</p>
 		</div>

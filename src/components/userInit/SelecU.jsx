@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link, useParams } from "react-router-dom";
 import { useUsersCContext } from "context/usersCarlosContext";
 
@@ -12,7 +11,6 @@ const SelectU = ({ contact }) => {
 			to={`/usuario/${contact.id}`}
 			onClick={() => agregarUsuario(contact.id)}
 		>
-
 			<div className="sidebar-contact__avatar-wrapper">
 				<img
 					src={contact.profile_picture}

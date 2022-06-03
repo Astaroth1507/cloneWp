@@ -696,6 +696,4 @@ const icons = {
 	),
 };
 
-// name: (props) => (),
-
 export default icons;

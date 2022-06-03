@@ -3,17 +3,11 @@ import Icon from "components/Icon";
 import { Link } from "react-router-dom";
 import formatTime from "utils/formatTime";
 import { useUsersContext } from "context/usersContext";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Contact = ({ contact }) => {
 
-	const {idUsu} = useParams();
-
-
-
-
-
-	//console.log(contact);
+	const { idUsu } = useParams();
 
 	const { setUserAsUnread } = useUsersContext();
 	const getLastMessage = () => {
@@ -30,7 +24,7 @@ const Contact = ({ contact }) => {
 		<Link
 
 			className="sidebar-contact"
-				to={`/usuario/${idUsu}/chat/${contact.id}`}
+			to={`/usuario/${idUsu}/chat/${contact.id}`}
 			onClick={() => setUserAsUnread(contact.id)}
 		>
 			<div className="sidebar-contact__avatar-wrapper">
@@ -55,17 +49,15 @@ const Contact = ({ contact }) => {
 									lastMessage?.status === "sent" ? "singleTick" : "doubleTick"
 								}
 								aria-label={lastMessage?.status}
-								className={`sidebar-contact__message-icon ${
-									lastMessage?.status === "read"
-										? "sidebar-contact__message-icon--blue"
-										: ""
-								}`}
+								className={`sidebar-contact__message-icon ${lastMessage?.status === "read"
+									? "sidebar-contact__message-icon--blue"
+									: ""
+									}`}
 							/>
 						)}
 						<span
-							className={`sidebar-contact__message ${
-								!!contact.unread ? "sidebar-contact__message--unread" : ""
-							}`}
+							className={`sidebar-contact__message ${!!contact.unread ? "sidebar-contact__message--unread" : ""
+								}`}
 						>
 							{contact.typing ? <i> typing...</i> : lastMessage?.content}
 						</span>
