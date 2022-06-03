@@ -6,6 +6,15 @@ import { useUsersContext } from "context/usersContext";
 import {useParams} from "react-router-dom";
 
 const Contact = ({ contact }) => {
+
+	const {idUsu} = useParams();
+
+
+
+
+
+	//console.log(contact);
+
 	const { setUserAsUnread } = useUsersContext();
 	const getLastMessage = () => {
 		const messageDates = Object.keys(contact.messages);
@@ -14,11 +23,12 @@ const Contact = ({ contact }) => {
 		const lastMessage = messages.pop();
 		return lastMessage;
 	};
-	const {idUsu} = useParams();
+
 	const lastMessage = getLastMessage(contact);
 
 	return (
 		<Link
+
 			className="sidebar-contact"
 				to={`/usuario/${idUsu}/chat/${contact.id}`}
 			onClick={() => setUserAsUnread(contact.id)}

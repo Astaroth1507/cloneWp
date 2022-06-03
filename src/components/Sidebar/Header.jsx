@@ -7,13 +7,14 @@ import Icon from "components/Icon";
 const Header = () => {
 
 
-    const { Carlos} = useUsersCContext();
+    const { Carlos, agregarUsuario} = useUsersCContext();
     const {idUsu} = useParams();
     let user = Carlos.filter((user) => user.id === Number(idUsu))[0];
 
 
 
     return (
+
         <header className="header chat__header">
             <div className="chat__avatar-wrapper" >
                 <img src={user.profile_picture}  className="avatar" />
