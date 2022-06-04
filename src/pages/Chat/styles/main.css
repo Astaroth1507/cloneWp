@@ -30,11 +30,9 @@
 }
 
 .chat__header {
-    /* Needed for the options btn to stay on top */
     z-index: 20;
 }
 
-/* Chat Header Component  */
 
 .chat__avatar-wrapper {
     width: 40px;
@@ -89,9 +87,6 @@
     height: 30px;
 }
 
-/* End Chat Header Component  */
-
-/* Chat Content */
 
 .chat__content {
     flex: 1;
@@ -266,7 +261,6 @@
     height: 20px;
 }
 
-/* End Chat Content */
 
 .chat__footer {
     background: rgb(240, 240, 240);
@@ -289,7 +283,6 @@
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2)
 }
 
-/* Emoji Tray */
 
 .emojis__wrapper {
     width: 100%;
@@ -379,9 +372,6 @@
     cursor: pointer;
 }
 
-/* End Emoji Tray */
-
-/* Chat Footer Toolbar */
 
 .chat__input-wrapper {
     padding: 10px;
@@ -465,9 +455,6 @@
     font-size: 0.9rem;
 }
 
-/* End Chat Footer Toolbar */
-
-/* Chat Sidebar */
 
 .chat-sidebar {
     width: 0;
@@ -669,7 +656,6 @@
     flex: 1;
 }
 
-/* End  Chat Sidebar */
 
 @media screen and (min-width: 1301px) {
     .chat__msg {

@@ -6,7 +6,6 @@
     background: url(../../../assets/images/fondoWhatsApp.jpg) rgb(13, 20, 24);
 }
 
-/* Chat Header Component  */
 
 .dark-theme .chat__contact-name {
     color: rgba(241, 241, 242, 0.92);
@@ -16,9 +15,7 @@
     color: rgba(241, 241, 242, 0.63);
 }
 
-/* End Chat Header Component  */
 
-/* Chat Content */
 
 .dark-theme .chat__content {
     background: rgb(13, 20, 24);
@@ -80,7 +77,6 @@
     background: transparent;
 }
 
-/* End Chat Content */
 
 .dark-theme .chat__footer {
     background: rgb(30, 36, 40);
@@ -91,7 +87,7 @@
     color: rgb(121, 124, 126);
 }
 
-/* Emoji Tray */
+
 
 .dark-theme .emojis__tab--active::after {
     background: rgb(0, 175, 156);
@@ -118,9 +114,7 @@
     color: rgba(241, 241, 242, 0.45);
 }
 
-/* End Emoji Tray */
 
-/* Chat Footer Toolbar */
 
 .dark-theme .chat__input-icon {
     color: rgb(130, 134, 137);
@@ -135,9 +129,8 @@
     color: rgb(241, 241, 242);
 }
 
-/* End Chat Footer Toolbar */
 
-/* Chat Sidebar */
+
 
 .dark-theme .chat-sidebar__header-icon {
     color: rgb(130, 134, 137);
